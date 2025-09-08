@@ -32,7 +32,7 @@ class BasicBot:
                     symbol=symbol,
                     side=side.upper(),
                     type="LIMIT",
-                    timeInForce="GTC",  # Good Till Cancelled
+                    timeInForce="GTC", 
                     quantity=quantity,
                     price=price
                 )
@@ -40,10 +40,10 @@ class BasicBot:
                 logging.warning("Invalid order type: %s", order_type)
                 return {"error": "Invalid order type! Use 'market' or 'limit'."}
 
-            logging.info("✅ %s order placed successfully: %s", order_type.upper(), order)
+            logging.info(" %s order placed successfully: %s", order_type.upper(), order)
             return order
         except BinanceAPIException as e:
-            logging.error("❌ Error placing %s order: %s", order_type.upper(), e)
+            logging.error(" Error placing %s order: %s", order_type.upper(), e)
             return {"error": str(e)}
 
     def check_order_status(self, symbol, order_id):
@@ -53,8 +53,8 @@ class BasicBot:
                 symbol=symbol,
                 orderId=order_id
             )
-            logging.info("📊 Checked order status: %s", order)
+            logging.info(" Checked order status: %s", order)
             return order
         except Exception as e:
-            logging.error("❌ Error checking order status: %s", e)
+            logging.error(" Error checking order status: %s", e)
             return {"error": str(e)}
